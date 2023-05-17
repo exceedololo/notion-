@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/exceedololo/notion-/internal/models"
-	"github.com/exceedololo/notion-/internal/usecases/incrementer"
+	"github.com/exceedololo/notion-/internal/usercases/incrementer"
 )
 
 func IncrementHandler(w http.ResponseWriter, r *http.Request) {

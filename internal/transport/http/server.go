@@ -2,10 +2,9 @@ package http
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/exceedololo/notion-/internal/config"
-	"github.com/exceedololo/notion-/internal/transport/http/handlers"
+	"net/http"
 )
 
 type Server struct {
@@ -20,7 +19,7 @@ func NewServer(cfg *config.Config) *Server {
 
 func (s *Server) Run() error {
 	router := http.NewServeMux()
-	handlers.RegisterHandlers(router)
+	RegisterHandlers(router)
 
 	addr := s.config.Host + ":" + s.config.Port
 	log.Printf("Server is running on %s", addr)

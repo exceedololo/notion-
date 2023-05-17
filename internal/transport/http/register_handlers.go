@@ -2,13 +2,9 @@ package http
 
 import (
 	"github.com/exceedololo/notion-/internal/transport/http/handlers"
-	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
-func RegisterHandlers() *gin.Engine {
-	router := gin.Default()
-
-	router.POST("/redis/incr", handlers.IncrementHandler)
-
-	return router
+func RegisterHandlers(router *http.ServeMux) {
+	router.HandleFunc("/redis/incr", handlers.IncrementHandler)
 }

@@ -1,5 +1,5 @@
-module notion_test
-
+//module notion_test
+module github.com/exceedololo/notion-
 go 1.20
 
 require (
