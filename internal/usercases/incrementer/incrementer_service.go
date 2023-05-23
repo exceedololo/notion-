@@ -1,7 +1,6 @@
 package incrementer
 
 import (
-	"github.com/exceedololo/notion-/internal/models"
 	"github.com/exceedololo/notion-/internal/repository/key_value_storage"
 )
 
@@ -15,20 +14,20 @@ func NewIncrementerService(storage key_value_storage.KeyValueStorage) *Increment
 	}
 }
 
-func (s *IncrementerService) Increment(req models.KeyValueIncrementRequest) (int, error) {
-	currentValue, err := s.storage.Get(req.Key)
+func (s *IncrementerService) Increment(key string, value int) (int, error) {
+	currentValue, err := s.storage.Get(key)
 	if err != nil && err != key_value_storage.ErrKeyNotFound {
 		return 0, err
 	}
 
 	var newValue int
-	if currentValue != nil {
-		newValue = *currentValue + req.Value
+	if currentValue != 0 {
+		newValue = currentValue + value
 	} else {
-		newValue = req.Value
+		newValue = value
 	}
 
-	err = s.storage.Set(req.Key, newValue)
+	err = s.storage.Set(key, newValue)
 	if err != nil {
 		return 0, err
 	}

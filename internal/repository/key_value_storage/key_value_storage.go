@@ -6,6 +6,11 @@ import (
 
 var ErrKeyNotFound = errors.New("key not found")
 
+type KeyValueStorage interface {
+	Get(key string) (int, error)
+	Set(key string, value int)
+}
+
 type Storage struct {
 	data map[string]int
 }
@@ -26,6 +31,7 @@ func (s *Storage) Get(key string) (int, error) {
 	return value, nil
 }
 
-func (s *Storage) Set(key string, value int) {
+func (s *Storage) Set(key string, value int) error {
 	s.data[key] = value
+	return nil
 }
